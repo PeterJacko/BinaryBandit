@@ -1,5 +1,5 @@
 # BinaryBandit
-A Julia package for optimization and evaluation of the multi-armed bandit problem with binary (success/failure) responses.
+A Julia package for optimization and evaluation of the multi-armed bandit problem with binary (success/failure) responses. It is being developed by the G.O.A.L. (Group on Optimal Adaptive Learning), see https://www.lancaster.ac.uk/staff/jacko/goal/ for papers presenting results obtained by this package.
 
 # Installation
 
