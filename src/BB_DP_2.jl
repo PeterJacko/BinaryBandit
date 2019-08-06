@@ -8,17 +8,6 @@ function DP_2_lin_index( number_of_allocations , number_of_successes_arm_1 , num
 
 end
 
-# COMMENTED OUT BECAUSE UNLIKELY TO BE USED (NOT USED HERE, AND value_to_go IS NOT RETURNED TO USERS) AND BECAUSE THIS IS CORRECT ONLY FOR THE FINALE (OTHERWISE number_of_allocations SHOULD BE REPLACED BY number_of_observed_responses)
-#function DP_2_value_lin_index( number_of_allocations , number_of_successes_arm_1 , number_of_failures_arm_1 , number_of_successes_arm_2 )
-## This converts a 3D state of value_to_go to linear index
-## number_of_successes_arm_1 , number_of_failures_arm_1 , number_of_successes_arm_2 \ge 0
-## number_of_allocations \ge 1
-## number_of_successes_arm_1 + number_of_failures_arm_1 + number_of_successes_arm_2 \le number_of_allocations
-#
-#    return div( ( number_of_allocations + 1 ) * ( number_of_allocations + 2 ) * ( number_of_allocations + 3 ) - ( number_of_allocations - number_of_successes_arm_2 + 1 ) * ( number_of_allocations - number_of_successes_arm_2 + 2 ) * ( number_of_allocations - number_of_successes_arm_2 + 3 ) , 6 ) + div( ( number_of_allocations - number_of_successes_arm_2 + 1 ) * ( number_of_allocations - number_of_successes_arm_2 + 2 ) - ( number_of_allocations - number_of_successes_arm_2 - number_of_failures_arm_1 + 1 ) * ( number_of_allocations - number_of_successes_arm_2 - number_of_failures_arm_1 + 2 ) , 2 ) + number_of_successes_arm_1 + 1
-#
-#end
-
 ###############################################################################################################################
 
 # Float64 version of value_to_go
@@ -596,7 +585,7 @@ end
 
 function DP_2_policy_bin_lin( number_of_allocations :: Int64 , prior_success_arm_1 :: Int64 = Int64( 1 ) , prior_failure_arm_1 :: Int64 = Int64( 1 ) , prior_success_arm_2 :: Int64 = Int64( 1 ) , prior_failure_arm_2 :: Int64 = Int64( 1 ) ) #
   # This function implements the DP design for 2 arms
-  # Output is the immediate action and the Bayes-expected number of successes (as Float64 irrespectively of the value of "precision")
+  # Output is the policy (i.e., actions for all states) with linear indices in binary encoding and the Bayes-expected number of successes
 
         value_to_go :: Array{ Float64 , 1 } = zeros( Float64 , div( ( number_of_allocations + 1 ) * ( number_of_allocations + 2 ) * ( number_of_allocations + 3 ) - 1 * 2 * 3 , 6 ) + 1 )
         DP_2_policy_bin_lin_with_finale( number_of_allocations , value_to_go , prior_success_arm_1 , prior_failure_arm_1 , prior_success_arm_2 , prior_failure_arm_2 )
@@ -606,7 +595,7 @@ end
 function DP_2_policy_bin_lin_with_administration( number_of_allocations :: Int64 , number_of_administered_allocations :: Int64 , prior_success_arm_1 :: Int64 = Int64( 1 ) , prior_failure_arm_1 :: Int64 = Int64( 1 ) , prior_success_arm_2 :: Int64 = Int64( 1 ) , prior_failure_arm_2 :: Int64 = Int64( 1 ) )
   # This function implements the DP design for 2 arms; the better arm (comparing the beliefs) is administered after the trial number_of_administered_allocations times
   # Uses linear indexing for value_to_go
-  # Output is the immediate action and the Bayes-expected number of successes
+  # Output is the policy (i.e., actions for all states) with linear indices in binary encoding and the Bayes-expected number of successes
 
         if number_of_administered_allocations == 0
 
