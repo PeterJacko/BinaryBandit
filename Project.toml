@@ -1,0 +1,4 @@
+name = "BinaryBandit"
+uuid = "4bc16670-b86e-11e9-3c42-7dc965607ef6"
+authors = ["PeterJacko <peter.jacko@gmail.com>"]
+version = "0.1.0"
