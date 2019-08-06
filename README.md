@@ -62,8 +62,14 @@ which will return
 ```julia
 (UInt8[0x01, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55  …  0x9a, 0x95, 0x56, 0xa9, 0x5a, 0x9a, 0x95, 0xe9, 0xe9, 0x6b], 38.562343246635564)
 ```
-The particular action can be read from the policy using the function
+A particular action can be read from the policy vector using the function
 ```julia
 function DP_2_lin_index( number_of_allocations , number_of_successes_arm_1 , number_of_failures_arm_1 , number_of_successes_arm_2 , number_of_remaining_allocations )
 ```
-which converts a 4D state to linear index. 
+which converts a 4D state to linear index.
+
+Note that the runtime grows quickly with the horizon, taking a few minutes for horizon around 1000, a few hours for horizon around 2000 and a few days for horizon around 4000. In terms of memory requirements, 32 GB RAM is able to store the whole policy for approximately horizon of 1500.
+
+# Advanced Usage
+
+See `test\runtests.jl` for a full list of functions, which include different implementations of those described above. In general, those starting with `DP_2_action` return just the immediate action, while those starting with `DP_2_policy` return the whole policy. Suffixes `_lin` and `_bin` indicate linear and binary encoding, respectively, of the policy and/or the value function. Suffix `_with_administration` is present in functions which assume that at the end of the trial, there will be a given additional number of allocations made in the subjects population using the arm that looks better at the end of the trial. A more general version of this are functions with suffix `_with_finale`, in which the final-period value function can be defined.
