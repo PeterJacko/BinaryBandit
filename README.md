@@ -16,7 +16,7 @@ Currently, only the Bayes-optimal (aka Bayesian decision theoretic) design is im
 Currently, only the 2-armed problem is implemented.
 Therefore, currently, all the function names start with "DP_2_", indicating that they refer to "dynamic programming" and 2 arms.
 
-For frequentist evaluation of the Bayes-optimal design, the function is
+For **frequentist evaluation** of the Bayes-optimal design, the function is
 ```julia
 function DP_2_NS( number_of_allocations :: Int64 , success_probability_arm_1 :: Float64 , success_probability_arm_2 :: Float64 , float_version :: Int64 = Int64( 64 ) , prior_success_arm_1 :: Int64 = Int64( 1 ) , prior_failure_arm_1 :: Int64 = Int64( 1 ) , prior_success_arm_2 :: Int64 = Int64( 1 ) , prior_failure_arm_2 :: Int64 = Int64( 1 ) )
 ```
@@ -29,7 +29,7 @@ BinaryBandit.DP_2_NS( horizon , success_probability_arm_1 , success_probability_
 ```
 which will return `(27.667781619675154, 23.650456467947016)`. These three input arguments are required. The other arguments are optional: float_version is by default set to 64 bits (currently this is set despite changing this value); the parameters of the prior Beta distribution on each arm are by default set to ( 1 , 1 ) meaning that the prior is the uniform distribution.
 
-For Bayesian evaluation or for online optimization of the Bayes-optimal design, the (recommended) function is
+For **Bayesian evaluation** or for **online optimization** of the Bayes-optimal design, the (recommended) function is
 ```julia
 function DP_2_action_lin( number_of_allocations :: Int64 , float_version :: Int64 = Int64( 64 ) , prior_success_arm_1 :: Int64 = Int64( 1 ) , prior_failure_arm_1 :: Int64 = Int64( 1 ) , prior_success_arm_2 :: Int64 = Int64( 1 ) , prior_failure_arm_2 :: Int64 = Int64( 1 ) )
 ```
@@ -49,7 +49,7 @@ BinaryBandit.DP_2_action_lin( horizon , 16 )
 ```
 will return `(3, 38.5625)`. Note that although the 16-bit version memory-wise allows for solving problems with larger horizon, the cost is two-fold: the inaccuracy is notable (growing to around 1% for horizon 500) and the runtime is around five times larger.
 
-For offline optimization of the Bayes-optimal design, the (recommended) function is
+For **offline optimization** of the Bayes-optimal design, the (recommended) function is
 ```julia
 function DP_2_policy_bin_lin( number_of_allocations :: Int64 , prior_success_arm_1 :: Int64 = Int64( 1 ) , prior_failure_arm_1 :: Int64 = Int64( 1 ) , prior_success_arm_2 :: Int64 = Int64( 1 ) , prior_failure_arm_2 :: Int64 = Int64( 1 ) )
 ```
