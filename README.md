@@ -39,11 +39,11 @@ horizon = 60
 BinaryBandit.DP_2_action_lin( horizon , 32 )
 ```
 which will return `(3, 38.56234359741211)`. Note that the returned actions can take values 1 (allocation to arm 1 is strictly optimal), 2 (allocation to arm 2 is strictly optimal), or 3 (the difference in expected values between actions 1 and 2 is below a numerical precision threshold, so it can be concluded that allocation to either arm is near-optimal). The first input argument is required. The other arguments are optional: float_version is by default set to 64 bits (but 32 bits memory-wise allows for solving problems with larger horizon at a cost of a negligible inaccuracy); the parameters of the prior Beta distribution on each arm are by default set to ( 1 , 1 ) meaning that the prior is the uniform distribution.
-For comparison of accuracy,
+For comparison of accuracy, the 64-bit version
 ```julia
 BinaryBandit.DP_2_action_lin( horizon )
 ```
-will return `(3, 38.562343246635564)`, while 
+will return `(3, 38.562343246635564)`, while the 16-bit version
 ```julia
 BinaryBandit.DP_2_action_lin( horizon , 16 )
 ```
