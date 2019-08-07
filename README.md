@@ -1,6 +1,8 @@
 # BinaryBandit
 A Julia package for optimization and evaluation of the multi-armed bandit problem with binary (success/failure) responses. It is being developed by the G.O.A.L. (Group on Optimal Adaptive Learning), see https://www.lancaster.ac.uk/staff/jacko/goal/ for papers presenting results obtained with this package.
 
+This package is two orders of magnitude faster than previously reported codes in different languages. However, note that the runtime grows quickly with the horizon, taking a few minutes for horizon around 1000, a few hours for horizon around 2000 and a few days for horizon around 4000. In terms of memory requirements, 32 GB RAM is able to store the whole policy for approximately horizon of 1500.
+
 # Installation
 
 Run the following commands in the Julia REPL:
@@ -67,8 +69,6 @@ A particular action can be read from the policy vector using the function
 function DP_2_lin_index( number_of_allocations , number_of_successes_arm_1 , number_of_failures_arm_1 , number_of_successes_arm_2 , number_of_remaining_allocations )
 ```
 which converts a 4D state to linear index.
-
-Note that the runtime grows quickly with the horizon, taking a few minutes for horizon around 1000, a few hours for horizon around 2000 and a few days for horizon around 4000. In terms of memory requirements, 32 GB RAM is able to store the whole policy for approximately horizon of 1500.
 
 # Advanced Usage
 
