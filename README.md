@@ -14,6 +14,11 @@ Pkg.clone("https://github.com/PeterJacko/BinaryBandit.git")
 
 # Basic Usage
 
+Once the package is installed, include the following line to use it:
+```julia
+using BinaryBandit
+```
+
 Currently, only the Bayes-optimal (aka Bayesian decision theoretic) design is implemented. This is the design obtained by solving the problem by dynamic programming (using the backward recursion algorithm).
 Currently, only the 2-armed problem is implemented.
 Therefore, currently, all the function names start with `DP_2_`, indicating that they refer to *dynamic programming* and *2* arms.
