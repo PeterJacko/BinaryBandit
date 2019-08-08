@@ -1,7 +1,11 @@
 # BinaryBandit
 A Julia package for optimization and evaluation of the multi-armed bandit problem with binary (success/failure) responses. It is being developed by the G.O.A.L. (Group on Optimal Adaptive Learning), see https://www.lancaster.ac.uk/staff/jacko/goal/ for papers presenting results obtained with this package.
 
-This package is two orders of magnitude faster than previously reported codes in different languages. However, note that the runtime grows quickly with the horizon, taking a few minutes for horizon around 1000, a few hours for horizon around 2000 and a few days for horizon around 4000. In terms of memory requirements, 32 GB RAM is able to store the whole policy for approximately horizon of 1500.
+Currently, only the Bayes-optimal (aka Bayesian decision theoretic) design is implemented. This is the design obtained by solving the problem by dynamic programming (using the backward recursion algorithm). Currently, only the 2-armed problem is implemented. Therefore, currently, all the function names start with `DP_2_`, indicating that they refer to *dynamic programming* and *2* arms.
+
+For the Bayes-optimal (aka Bayesian decision theoretic) design, this package is two orders of magnitude faster than previously reported codes in different languages. However, note that the runtime grows quickly with the horizon, taking a few minutes for horizon around 1000, a few hours for horizon around 2000 and a few days for horizon around 4000. In terms of memory requirements, 32 GB RAM is able to store the whole policy for approximately horizon of 1500.
+
+All the functions use the accurate (up to numerical accuracy) backward recursion algorithm rather than (inaccurate) simulation.
 
 # Installation
 
@@ -18,10 +22,6 @@ Once the package is installed, include the following line to use it:
 ```julia
 using BinaryBandit
 ```
-
-Currently, only the Bayes-optimal (aka Bayesian decision theoretic) design is implemented. This is the design obtained by solving the problem by dynamic programming (using the backward recursion algorithm).
-Currently, only the 2-armed problem is implemented.
-Therefore, currently, all the function names start with `DP_2_`, indicating that they refer to *dynamic programming* and *2* arms.
 
 For **frequentist evaluation** of the Bayes-optimal design, the function is
 ```julia
