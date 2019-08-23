@@ -16,7 +16,7 @@ using Pkg
 Pkg.clone("https://github.com/PeterJacko/BinaryBandit.git")
 ```
 
-Once the package is installed, include the following line to use it:
+Once the package is installed, run the following command (or include it at the beginning of your script) to use it:
 ```julia
 using BinaryBandit
 ```
