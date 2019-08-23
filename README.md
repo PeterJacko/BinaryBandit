@@ -16,12 +16,12 @@ using Pkg
 Pkg.clone("https://github.com/PeterJacko/BinaryBandit.git")
 ```
 
-# Basic Usage
-
 Once the package is installed, include the following line to use it:
 ```julia
 using BinaryBandit
 ```
+
+# Basic Usage
 
 For **frequentist evaluation** of the Bayes-optimal design, the function is
 ```julia
